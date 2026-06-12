@@ -1,0 +1,1418 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>知微广告｜洞见细微，创意成真</title>
+  <meta name="description" content="知微广告，洞见细微，创意成真。">
+  <style>
+    :root {
+      --blue: #0754c7;
+      --white: #fffdf7;
+      --brand-yellow: #fbbb0a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--blue);
+    }
+
+    body {
+      color: var(--white);
+      font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+    }
+
+    html {
+      scroll-padding-top: 92px;
+    }
+
+    .section-dot-field {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: .68;
+    }
+
+    .section-reveal {
+      opacity: 0;
+      translate: 0 32px;
+      transition:
+        opacity 700ms cubic-bezier(.22,1,.36,1),
+        translate 800ms cubic-bezier(.22,1,.36,1);
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+
+    .section-reveal.is-visible {
+      opacity: 1;
+      translate: 0 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .section-reveal {
+        opacity: 1;
+        translate: none;
+        filter: none;
+        transition: none;
+      }
+    }
+
+    .about-heading,
+    .about-copy,
+    .services-heading,
+    .services-content,
+    .cases-heading,
+    .case-menu,
+    .contact-content {
+      z-index: 1;
+    }
+
+    .about-heading,
+    .services-heading,
+    .cases-heading,
+    .case-menu,
+    .contact-content {
+      position: relative;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100svh;
+      overflow: hidden;
+      background: var(--blue);
+    }
+
+    .hero-header {
+      position: relative;
+      z-index: 4;
+      height: 98px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(28px, 2.2vw, 44px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.88);
+      transition:
+        height 280ms ease,
+        background-color 280ms ease,
+        border-color 280ms ease,
+        box-shadow 280ms ease;
+    }
+
+    .hero-header.is-fixed {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 1000;
+      height: 82px;
+      background: rgba(7, 84, 199, .68);
+      border-bottom-color: rgba(255, 255, 255, .24);
+      box-shadow: 0 12px 42px rgba(7, 35, 92, .18);
+      -webkit-backdrop-filter: blur(18px) saturate(145%);
+      backdrop-filter: blur(18px) saturate(145%);
+    }
+
+    .logo {
+      width: clamp(154px, 10vw, 194px);
+    }
+
+    .logo img {
+      display: block;
+      width: 100%;
+      filter: brightness(0) invert(1);
+    }
+
+    .menu-button {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      padding: 0 0 3px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--white);
+      color: var(--blue);
+      font: 300 30px/1 Arial, sans-serif;
+      cursor: pointer;
+      transition: transform 240ms ease;
+    }
+
+    .menu-button:hover {
+      transform: rotate(90deg);
+    }
+
+    .header-actions {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .header-nav {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: flex;
+      align-items: center;
+      gap: clamp(18px, 2.4vw, 42px);
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%);
+      pointer-events: auto;
+    }
+
+    .header-nav a {
+      color: #fff;
+      font-size: clamp(15px, 1.25vw, 21px);
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 180ms ease;
+    }
+
+    .header-nav a:hover,
+    .header-nav a:focus-visible {
+      color: var(--yellow);
+      outline: none;
+    }
+
+    .menu-button[aria-expanded="true"] { transform: rotate(135deg); }
+
+    .slogan {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .slogan-particles {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: crosshair;
+      touch-action: pan-y;
+    }
+
+    .about {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100svh;
+      overflow: hidden;
+      padding: clamp(30px, 3.2vw, 60px) clamp(28px, 4vw, 76px);
+      background: var(--brand-yellow);
+      color: var(--blue);
+    }
+
+    .about-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0;
+      font-size: clamp(24px, 2.25vw, 42px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--white);
+    }
+
+    .about-heading::before {
+      content: "";
+      width: clamp(12px, 1vw, 18px);
+      aspect-ratio: 1;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--white);
+    }
+
+    .about-copy {
+      position: absolute;
+      left: clamp(28px, 5.6vw, 108px);
+      right: clamp(28px, 5.6vw, 108px);
+      top: 50%;
+      transform: translateY(-34%);
+      text-align: center;
+      color: var(--white);
+      font-family: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+      font-size: clamp(27px, 2.45vw, 46px);
+      font-weight: 500;
+      line-height: 1.12;
+      letter-spacing: -0.065em;
+    }
+
+    .about-line {
+      display: block;
+      width: max-content;
+      max-width: 100%;
+      margin: 0 auto;
+      white-space: nowrap;
+    }
+
+    .services {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100svh;
+      overflow: hidden;
+      padding: clamp(30px, 3.2vw, 60px) clamp(28px, 4vw, 76px);
+      background: #e7e5df;
+      color: var(--blue);
+    }
+
+    .services-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0;
+      font-size: clamp(24px, 2.25vw, 42px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .services-heading::before {
+      content: "";
+      width: clamp(12px, 1vw, 18px);
+      aspect-ratio: 1;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--blue);
+    }
+
+    .services-content {
+      position: absolute;
+      left: clamp(28px, 5vw, 96px);
+      right: clamp(28px, 5vw, 96px);
+      top: 50%;
+      transform: translateY(-48%);
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(300px, .75fr);
+      gap: clamp(50px, 8vw, 150px);
+      align-items: center;
+    }
+
+    .services-title {
+      max-width: 1050px;
+      margin: 0 0 clamp(32px, 4vw, 68px);
+      color: var(--blue);
+      font-size: clamp(52px, 5.9vw, 112px);
+      font-weight: 500;
+      line-height: .92;
+      letter-spacing: -0.07em;
+    }
+
+    .services-title span {
+      display: block;
+      width: max-content;
+      max-width: 100%;
+      white-space: nowrap;
+    }
+
+    .services-title span:nth-child(2) {
+      margin-left: 1.15em;
+    }
+
+    .services-title span:nth-child(3) {
+      margin-left: .38em;
+    }
+
+    .services-description {
+      max-width: 900px;
+      margin: 0 0 clamp(24px, 2.4vw, 42px);
+      color: #171717;
+      font-size: clamp(12px, 1.05vw, 18px);
+      font-weight: 500;
+      line-height: 1.65;
+      letter-spacing: -0.025em;
+    }
+
+    .service-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px 24px;
+      width: 92.3%;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 9px 18px 10px;
+      border: 1.5px solid #171717;
+      border-radius: 999px;
+      color: #171717;
+      font-size: clamp(14px, 1.05vw, 19px);
+      font-weight: 700;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .service-item:last-child {
+      grid-column: 1;
+      width: 100%;
+    }
+
+    .service-graphic {
+      position: relative;
+      width: min(31vw, 520px);
+      aspect-ratio: 1;
+      justify-self: end;
+    }
+
+    .logo-extension {
+      position: absolute;
+      inset: 5%;
+      animation: extensionSpin 26s linear infinite;
+    }
+
+    .logo-petal {
+      position: absolute;
+      left: 50%;
+      top: 3%;
+      width: 29%;
+      height: 47%;
+      background: var(--blue);
+      border-radius: 58% 58% 18% 78%;
+      transform-origin: 0 100%;
+      transform: rotate(var(--turn)) skewX(-9deg);
+    }
+
+    .logo-core {
+      position: absolute;
+      inset: 33%;
+      border-radius: 50%;
+      border: clamp(10px, 1.5vw, 24px) solid var(--blue);
+      background: #e7e5df;
+    }
+
+    .logo-satellite {
+      position: absolute;
+      right: 2%;
+      bottom: 10%;
+      width: 18%;
+      aspect-ratio: 1;
+      border: clamp(7px, .9vw, 15px) solid var(--blue);
+      border-radius: 50%;
+    }
+
+    @keyframes extensionSpin { to { transform: rotate(360deg); } }
+
+    .cases {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100svh;
+      overflow: clip;
+      padding: clamp(30px, 3.2vw, 60px) clamp(28px, 4vw, 76px);
+      background: #f2eee7;
+      color: #171717;
+    }
+
+    .cases-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0;
+      font-size: clamp(24px, 2.25vw, 42px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .cases-heading::before {
+      content: "";
+      width: clamp(12px, 1vw, 18px);
+      aspect-ratio: 1;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: #171717;
+    }
+
+    .case-menu {
+      display: flex;
+      flex-direction: column;
+      margin-top: clamp(46px, 6vh, 88px);
+    }
+
+    .case-item { width: 100%; }
+
+    .case-link {
+      position: relative;
+      width: 100%;
+      display: grid;
+      grid-template-columns: clamp(28px, 4vw, 72px) minmax(0, 1fr) clamp(28px, 4vw, 72px);
+      align-items: center;
+      border: 0;
+      padding: clamp(4px, .7vh, 10px) 0;
+      background: transparent;
+      color: #bbb7b0;
+      font: 500 clamp(62px, 8.4vw, 158px)/.84 "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      letter-spacing: -.075em;
+      cursor: pointer;
+      transition: color 220ms ease, transform 260ms cubic-bezier(.22,1,.36,1);
+    }
+
+    .case-link::before,
+    .case-link::after {
+      content: "\2193";
+      color: #171717;
+      font: 500 clamp(24px, 3vw, 52px)/1 Arial, sans-serif;
+      letter-spacing: 0;
+      opacity: 0;
+      transition: opacity 220ms ease, transform 320ms cubic-bezier(.22,1,.36,1);
+    }
+
+    .case-link::before { justify-self: start; }
+    .case-link::after { justify-self: end; }
+
+    .case-link span {
+      min-width: 0;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .case-link:hover,
+    .case-link:focus-visible,
+    .case-link.active {
+      color: var(--blue);
+      outline: none;
+    }
+
+    .case-link:hover::before,
+    .case-link:hover::after,
+    .case-link:focus-visible::before,
+    .case-link:focus-visible::after,
+    .case-link.active::before,
+    .case-link.active::after { opacity: 1; }
+
+    .case-link.active::before { transform: rotate(180deg); }
+    .case-link.active::after { transform: rotate(-180deg); }
+
+    .case-panel {
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      transition: grid-template-rows 520ms cubic-bezier(.22,1,.36,1), opacity 260ms ease;
+    }
+
+    .case-item.open .case-panel {
+      grid-template-rows: 1fr;
+      opacity: 1;
+    }
+
+    .case-panel-inner {
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .case-gallery {
+      display: flex;
+      align-items: center;
+      gap: clamp(16px, 1.8vw, 30px);
+      width: 100%;
+      height: clamp(300px, 38vw, 520px);
+      overflow-x: auto;
+      overflow-y: hidden;
+      margin: clamp(18px, 2.5vw, 38px) 0 clamp(34px, 4vw, 70px);
+      padding: 0 clamp(4px, 1vw, 16px) 16px;
+      scrollbar-width: none;
+      cursor: grab;
+      overscroll-behavior-x: contain;
+    }
+
+    .case-gallery::-webkit-scrollbar { display: none; }
+    .case-gallery.dragging { cursor: grabbing; }
+
+    .case-card {
+      flex: 0 0 auto;
+      width: auto;
+      height: auto;
+      max-height: 100%;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      padding: 0;
+      background: #f2eee7;
+      border-radius: clamp(10px, 1.2vw, 18px);
+    }
+
+    .case-card img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: min(48vw, 680px);
+      max-height: 100%;
+      object-fit: contain;
+      object-position: center center;
+    }
+
+    .case-empty {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      color: #a7a39c;
+      font-size: clamp(44px, 7vw, 128px);
+      font-weight: 500;
+      letter-spacing: -.06em;
+    }
+
+    .contact {
+      position: relative;
+      min-height: 25vh;
+      min-height: 25svh;
+      display: flex;
+      align-items: flex-end;
+      padding: clamp(24px, 2.4vw, 42px) clamp(28px, 4vw, 76px);
+      background: var(--blue);
+      color: #fff;
+      overflow: visible;
+    }
+
+    .contact-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0;
+      font-size: clamp(24px, 2.25vw, 42px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -.04em;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 2;
+      padding-right: 18px;
+      background: var(--blue);
+      transform: translateY(-50%);
+    }
+
+    .contact-heading::before {
+      display: none;
+    }
+
+    .contact-content {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: clamp(28px, 5vw, 90px);
+      width: 100%;
+      padding-top: clamp(28px, 3vw, 48px);
+      border-top: 1px solid rgba(255, 255, 255, .4);
+    }
+
+    .contact-details {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      gap: clamp(24px, 4vw, 76px);
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .contact-label {
+      color: rgba(255, 255, 255, .66);
+      font-size: clamp(12px, .9vw, 16px);
+      font-weight: 600;
+    }
+
+    .contact-value {
+      font-size: clamp(20px, 2vw, 36px);
+      font-weight: 700;
+      letter-spacing: -.035em;
+      transition: color 180ms ease;
+    }
+
+    .contact-item:hover .contact-value,
+    .contact-item:focus-visible .contact-value { color: var(--yellow); }
+
+    .wechat-contact {
+      position: relative;
+      z-index: 5;
+      justify-self: end;
+    }
+
+    .wechat-button {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 0;
+      padding: 12px 0;
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+      font: 700 clamp(18px, 1.6vw, 28px)/1 "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    }
+
+    .wechat-button svg {
+      width: clamp(42px, 4vw, 66px);
+      height: auto;
+      color: var(--yellow);
+    }
+
+    .wechat-qr {
+      position: absolute;
+      right: 0;
+      bottom: calc(100% + 18px);
+      width: min(310px, 72vw);
+      padding: 12px;
+      border-radius: 24px;
+      background: #fff;
+      box-shadow: 0 22px 70px rgba(0, 0, 0, .28);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(18px) scale(.96);
+      transform-origin: right bottom;
+      pointer-events: none;
+      transition: opacity 220ms ease, transform 320ms cubic-bezier(.22,1,.36,1), visibility 0s linear 320ms;
+    }
+
+    .wechat-qr img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+    }
+
+    .wechat-contact:hover .wechat-qr,
+    .wechat-contact:focus-within .wechat-qr,
+    .wechat-contact.open .wechat-qr {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+      transition-delay: 0s;
+    }
+
+    @media (max-width: 700px) {
+      .hero-header {
+        height: 76px;
+        padding: 0 20px;
+      }
+
+      .hero-header.is-fixed { height: 68px; }
+
+      .logo {
+        width: 138px;
+      }
+
+      .menu-button {
+        width: 44px;
+        height: 44px;
+        font-size: 26px;
+      }
+
+      .header-nav {
+        position: absolute;
+        top: calc(100% + 16px);
+        right: 20px;
+        left: auto;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0;
+        min-width: 148px;
+        padding: 8px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, .96);
+        box-shadow: 0 16px 44px rgba(0, 0, 0, .16);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px) scale(.96);
+        transform-origin: right top;
+        pointer-events: none;
+        transition: opacity 220ms ease, transform 320ms cubic-bezier(.22,1,.36,1), visibility 0s linear 320ms;
+      }
+
+      .header-nav a {
+        width: 100%;
+        padding: 12px 14px;
+        color: var(--blue);
+        font-size: 16px;
+        text-align: right;
+      }
+
+      .header-nav.open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
+        transition-delay: 0s;
+      }
+
+      .about {
+        min-height: 100svh;
+        padding: 28px 20px 42px;
+        overflow: visible;
+      }
+
+      .about-heading {
+        gap: 10px;
+        font-size: 24px;
+      }
+
+      .about-heading::before { width: 11px; }
+
+      .about-copy {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        transform: none;
+        margin-top: clamp(96px, 14vh, 120px);
+        font-size: clamp(20px, 5.4vw, 23px);
+        line-height: 1.25;
+        letter-spacing: -0.055em;
+      }
+
+      .about-line {
+        width: auto;
+        white-space: normal;
+      }
+
+      .services {
+        min-height: 100svh;
+        padding: 28px 20px 42px;
+        overflow: visible;
+      }
+
+      .services-heading {
+        gap: 10px;
+        font-size: 24px;
+      }
+
+      .services-heading::before { width: 11px; }
+
+      .services-content {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        transform: none;
+        display: flex;
+        flex-direction: column;
+        gap: 42px;
+        margin-top: clamp(100px, 15vh, 130px);
+      }
+
+      .services-title {
+        margin-bottom: 30px;
+        font-size: clamp(44px, 12.2vw, 58px);
+        line-height: .98;
+      }
+
+      .services-title span:nth-child(2) { margin-left: .58em; }
+      .services-title span:nth-child(3) { margin-left: .16em; }
+
+      .services-description {
+        margin-bottom: 22px;
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .service-list {
+        width: 92%;
+        gap: 9px 10px;
+      }
+
+      .service-item {
+        min-height: 38px;
+        padding: 7px 10px 8px;
+        border-width: 1px;
+        font-size: 13px;
+        white-space: normal;
+      }
+
+      .service-item:last-child { width: 100%; }
+
+      .service-graphic {
+        width: min(62vw, 240px);
+        align-self: flex-end;
+      }
+
+      .cases {
+        min-height: 100svh;
+        padding: 28px 20px 42px;
+      }
+
+      .cases-heading {
+        gap: 10px;
+        font-size: 24px;
+      }
+
+      .cases-heading::before { width: 11px; }
+
+      .case-menu {
+        margin-top: clamp(72px, 11vh, 100px);
+      }
+
+      .case-link {
+        grid-template-columns: 24px minmax(0, 1fr) 24px;
+        padding: 8px 0;
+        font-size: clamp(42px, 12.5vw, 56px);
+        line-height: .9;
+      }
+
+      .case-item:nth-child(5) .case-link { font-size: 36px; }
+
+      .case-gallery {
+        height: clamp(230px, 68vw, 340px);
+        gap: 16px;
+        margin: 18px 0 34px;
+        padding: 0 0 12px;
+      }
+
+      .case-card {
+        flex: 0 0 auto;
+        padding: 0;
+      }
+
+      .case-card img { max-width: min(76vw, 300px); }
+
+      .case-empty { font-size: 44px; }
+
+      .contact {
+        min-height: 25svh;
+        padding: 24px 20px 28px;
+      }
+
+      .contact-heading {
+        gap: 10px;
+        font-size: 24px;
+      }
+
+      .contact-heading::before { width: 11px; }
+
+      .contact-content {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 12px;
+        padding-top: 30px;
+      }
+
+      .contact-details {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        align-items: end;
+        gap: 12px;
+      }
+
+      .contact-heading {
+        left: 0;
+        top: 0;
+      }
+
+      .contact-label { font-size: 10px; }
+      .contact-value { font-size: clamp(13px, 3.8vw, 16px); }
+
+      .wechat-contact { justify-self: end; }
+
+      .wechat-button { padding: 6px 0; }
+      .wechat-button span { display: none; }
+      .wechat-button svg { width: 42px; }
+
+      .wechat-qr {
+        right: auto;
+        left: 0;
+        width: min(280px, calc(100vw - 40px));
+        transform-origin: left bottom;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="hero" id="home">
+    <header class="hero-header">
+      <a class="logo" href="./" aria-label="知微广告首页">
+        <img src="assets/logo-transparent.png" alt="知微广告">
+      </a>
+      <nav class="header-nav" id="headerNav" aria-label="主导航">
+        <a href="#home">首页</a>
+        <a href="#cases">案例展示</a>
+        <a href="#services">服务内容</a>
+      </nav>
+      <div class="header-actions" id="headerActions">
+        <button class="menu-button" id="menuButton" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="headerNav" onclick="event.stopPropagation(); const nav = document.getElementById('headerNav'); const isOpen = nav.classList.toggle('open'); this.setAttribute('aria-expanded', String(isOpen)); this.setAttribute('aria-label', isOpen ? '关闭菜单' : '打开菜单');">+</button>
+      </div>
+    </header>
+
+    <h1 class="slogan">洞见细微，创意成真</h1>
+    <canvas class="slogan-particles" id="sloganParticles" aria-hidden="true"></canvas>
+  </main>
+  <section class="about" id="about" aria-labelledby="about-title">
+    <h2 class="about-heading" id="about-title">公司简介</h2>
+    <div class="about-copy">
+      <span class="about-line">知微广告是一家以新技术驱动的独立广告创意工作室</span>
+      <span class="about-line">专注于品牌视觉、商业广告设计及制作落地</span>
+      <span class="about-line">我们从品牌与经营需求出发</span>
+      <span class="about-line">将前沿创作方式融入设计过程，让创意表达更准确，方案推进更高效</span>
+      <span class="about-line">采用线上协作与主理人全程负责的服务模式</span>
+      <span class="about-line">并联合长期合作的设计、制作与安装供应伙伴</span>
+      <span class="about-line">为客户提供从创意构思、视觉设计到成品交付的一体化服务</span>
+      <span class="about-line">没有冗长的沟通层级</span>
+      <span class="about-line">以更灵活的协作方式，认真对待每一个细节</span>
+      <span class="about-line">让好的想法最终成为看得见的成果</span>
+    </div>
+  </section>
+  <section class="services" id="services" aria-labelledby="services-heading">
+    <h2 class="services-heading" id="services-heading">服务内容</h2>
+    <div class="services-content">
+      <div class="services-copy">
+        <p class="services-title"><span>以需求为起点</span><span>以创意为方法</span><span>以落地为标准</span></p>
+        <p class="services-description">主理人全程对接，协同稳定的制作与安装伙伴，从设计、材质到工艺交付全程把控，让创意兼顾视觉、预算与实际落地。</p>
+        <div class="service-list" aria-label="业务内容">
+          <span class="service-item">活动策划</span>
+          <span class="service-item">企业文化建设</span>
+          <span class="service-item">展览展示</span>
+          <span class="service-item">广告物料制作</span>
+          <span class="service-item">品牌物料设计及制作</span>
+        </div>
+      </div>
+      <div class="service-graphic" aria-hidden="true">
+        <div class="logo-extension">
+          <span class="logo-petal" style="--turn:0deg"></span>
+          <span class="logo-petal" style="--turn:72deg"></span>
+          <span class="logo-petal" style="--turn:144deg"></span>
+          <span class="logo-petal" style="--turn:216deg"></span>
+          <span class="logo-petal" style="--turn:288deg"></span>
+          <span class="logo-core"></span>
+        </div>
+        <span class="logo-satellite"></span>
+      </div>
+    </div>
+  </section>
+  <section class="cases" id="cases" aria-labelledby="cases-heading">
+    <h2 class="cases-heading" id="cases-heading">精选案例</h2>
+    <nav class="case-menu" aria-label="精选案例分类">
+      <div class="case-item">
+        <button class="case-link" type="button" data-case-category="活动策划" aria-expanded="false" onclick="selectCaseCategory(this)"><span>活动策划</span></button>
+        <div class="case-panel"><div class="case-panel-inner"><div class="case-gallery" tabindex="0" aria-live="polite"></div></div></div>
+      </div>
+      <div class="case-item">
+        <button class="case-link" type="button" data-case-category="企业文化建设" aria-expanded="false" onclick="selectCaseCategory(this)"><span>企业文化建设</span></button>
+        <div class="case-panel"><div class="case-panel-inner"><div class="case-gallery" tabindex="0" aria-live="polite"></div></div></div>
+      </div>
+      <div class="case-item">
+        <button class="case-link" type="button" data-case-category="展览展示" aria-expanded="false" onclick="selectCaseCategory(this)"><span>展览展示</span></button>
+        <div class="case-panel"><div class="case-panel-inner"><div class="case-gallery" tabindex="0" aria-live="polite"></div></div></div>
+      </div>
+      <div class="case-item">
+        <button class="case-link" type="button" data-case-category="广告物料制作" aria-expanded="false" onclick="selectCaseCategory(this)"><span>广告物料制作</span></button>
+        <div class="case-panel"><div class="case-panel-inner"><div class="case-gallery" tabindex="0" aria-live="polite"></div></div></div>
+      </div>
+      <div class="case-item">
+        <button class="case-link" type="button" data-case-category="品牌物料设计及制作" aria-expanded="false" onclick="selectCaseCategory(this)"><span>品牌物料设计及制作</span></button>
+        <div class="case-panel"><div class="case-panel-inner"><div class="case-gallery" tabindex="0" aria-live="polite"></div></div></div>
+      </div>
+    </nav>
+  </section>
+  <section class="contact" id="contact" aria-labelledby="contact-heading">
+    <div class="contact-content">
+      <h2 class="contact-heading" id="contact-heading">联系我们</h2>
+      <div class="contact-details">
+        <a class="contact-item" href="tel:18668259691">
+          <span class="contact-label">电话</span>
+          <span class="contact-value">18668259691</span>
+        </a>
+        <a class="contact-item" href="mailto:2578545173@qq.com">
+          <span class="contact-label">邮箱</span>
+          <span class="contact-value">2578545173@qq.com</span>
+        </a>
+      </div>
+      <div class="wechat-contact" id="wechatContact">
+        <button class="wechat-button" id="wechatButton" type="button" aria-expanded="false" aria-controls="wechatQr">
+          <svg viewBox="0 0 64 54" aria-hidden="true">
+            <path fill="currentColor" d="M25.5 4C11.4 4 0 13.2 0 24.5c0 6.5 3.8 12.3 9.8 16.1L7.4 49l9.2-4.8c2.8.7 5.8 1.1 8.9 1.1 1.2 0 2.4-.1 3.6-.2a18 18 0 0 1-2.6-9.3c0-11 9.7-20 22-20.5C44.7 8.6 35.8 4 25.5 4Zm-8.3 14.3a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm17 0a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/>
+            <path fill="currentColor" d="M64 35.8c0-9.2-8.3-16.7-18.5-16.7S27 26.6 27 35.8s8.3 16.7 18.5 16.7c2.5 0 4.9-.4 7.1-1.2l7.2 3.7-1.9-6.5C61.7 45.4 64 40.8 64 35.8ZM39.4 30a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Zm12.3 0a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"/>
+          </svg>
+          <span>微信咨询</span>
+        </button>
+        <div class="wechat-qr" id="wechatQr" role="dialog" aria-label="微信二维码">
+          <img src="assets/wechat-qr.jpg" alt="阿蔡微信二维码">
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="assets/cases-data.js"></script>
+  <script src="assets/dot-field.js"></script>
+  <script src="assets/reveal.js"></script>
+  <script>
+    const caseData = window.ZHIWEI_CASES || {};
+    const headerActions = document.getElementById("headerActions");
+    const menuButton = document.getElementById("menuButton");
+    const headerNav = document.getElementById("headerNav");
+    const heroHeader = document.querySelector(".hero-header");
+    const heroSection = document.querySelector(".hero");
+    let headerScrollFrame = 0;
+
+    function updateFixedHeader() {
+      const initialHeaderHeight = matchMedia("(max-width: 700px)").matches ? 76 : 98;
+      const shouldFix = scrollY >= heroSection.offsetHeight - initialHeaderHeight;
+      heroHeader.classList.toggle("is-fixed", shouldFix);
+      if (!shouldFix) closeHeaderMenu();
+      headerScrollFrame = 0;
+    }
+
+    window.addEventListener("scroll", () => {
+      if (!headerScrollFrame) headerScrollFrame = requestAnimationFrame(updateFixedHeader);
+    }, { passive: true });
+
+    window.addEventListener("resize", updateFixedHeader);
+
+    function closeHeaderMenu() {
+      headerNav.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.setAttribute("aria-label", "打开菜单");
+    }
+
+    headerNav.addEventListener("click", closeHeaderMenu);
+    document.addEventListener("click", event => {
+      if (!headerActions.contains(event.target) && !headerNav.contains(event.target)) closeHeaderMenu();
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeHeaderMenu();
+    });
+    updateFixedHeader();
+    const caseButtons = [...document.querySelectorAll("[data-case-category]")];
+    let activeGallery = null;
+    let galleryScrollTarget = 0;
+    let galleryScrollFrame = 0;
+
+    function animateGalleryScroll() {
+      if (!activeGallery) {
+        galleryScrollFrame = 0;
+        return;
+      }
+      const distance = galleryScrollTarget - activeGallery.scrollLeft;
+      activeGallery.scrollLeft += distance * .16;
+      if (Math.abs(distance) > .5) {
+        galleryScrollFrame = requestAnimationFrame(animateGalleryScroll);
+      } else {
+        activeGallery.scrollLeft = galleryScrollTarget;
+        galleryScrollFrame = 0;
+      }
+    }
+
+    function renderCases(button) {
+      const category = button.dataset.caseCategory;
+      const gallery = button.closest(".case-item").querySelector(".case-gallery");
+      const images = caseData[category] || [];
+      if (!images.length) {
+        gallery.innerHTML = '<div class="case-empty">暂无案例</div>';
+        gallery.scrollLeft = 0;
+        activeGallery = gallery;
+        galleryScrollTarget = 0;
+        return;
+      }
+      gallery.innerHTML = images.map((src, index) =>
+        `<figure class="case-card"><img src="${src}" alt="${category}案例 ${index + 1}" loading="${index < 3 ? "eager" : "lazy"}"></figure>`
+      ).join("");
+      gallery.scrollLeft = 0;
+      activeGallery = gallery;
+      galleryScrollTarget = 0;
+    }
+
+    function selectCaseCategory(button) {
+      const selectedItem = button.closest(".case-item");
+      const wasOpen = selectedItem.classList.contains("open");
+      document.querySelectorAll(".case-item.open").forEach(item => item.classList.remove("open"));
+      caseButtons.forEach(item => {
+        item.classList.remove("active");
+        item.setAttribute("aria-expanded", "false");
+      });
+      if (wasOpen) {
+        activeGallery = null;
+        cancelAnimationFrame(galleryScrollFrame);
+        galleryScrollFrame = 0;
+        return;
+      }
+      button.classList.add("active");
+      button.setAttribute("aria-expanded", "true");
+      selectedItem.classList.add("open");
+      renderCases(button);
+      requestAnimationFrame(() => {
+        button.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+
+    window.addEventListener("wheel", event => {
+      if (!activeGallery) return;
+      const rect = activeGallery.getBoundingClientRect();
+      if (rect.bottom <= 0 || rect.top >= innerHeight) return;
+      const rawDelta = Math.abs(event.deltaY) >= Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
+      const delta = rawDelta * (event.deltaMode === 1 ? 18 : event.deltaMode === 2 ? innerHeight : 1);
+      const maxScroll = activeGallery.scrollWidth - activeGallery.clientWidth;
+      const canMoveForward = delta > 0 && galleryScrollTarget < maxScroll - 2;
+      const canMoveBackward = delta < 0 && galleryScrollTarget > 2;
+      if (!canMoveForward && !canMoveBackward) return;
+      event.preventDefault();
+      event.stopPropagation();
+      galleryScrollTarget = Math.max(0, Math.min(maxScroll, galleryScrollTarget + delta * 1.05));
+      if (!galleryScrollFrame) galleryScrollFrame = requestAnimationFrame(animateGalleryScroll);
+    }, { capture: true, passive: false });
+
+    const initialCaseCategory = new URLSearchParams(location.search).get("case");
+    const initialCaseButton = caseButtons.find(button => button.dataset.caseCategory === initialCaseCategory);
+    if (initialCaseButton) selectCaseCategory(initialCaseButton);
+
+    let dragging = false;
+    let dragStart = 0;
+    let scrollStart = 0;
+    let draggedGallery = null;
+
+    document.addEventListener("pointerdown", event => {
+      const gallery = event.target.closest(".case-gallery");
+      if (!gallery) return;
+      dragging = true;
+      draggedGallery = gallery;
+      cancelAnimationFrame(galleryScrollFrame);
+      galleryScrollFrame = 0;
+      dragStart = event.clientX;
+      scrollStart = gallery.scrollLeft;
+      gallery.classList.add("dragging");
+      gallery.setPointerCapture(event.pointerId);
+    });
+
+    document.addEventListener("pointermove", event => {
+      if (dragging && draggedGallery) draggedGallery.scrollLeft = scrollStart - (event.clientX - dragStart);
+    });
+
+    function stopCaseDrag() {
+      dragging = false;
+      if (draggedGallery) {
+        draggedGallery.classList.remove("dragging");
+        galleryScrollTarget = draggedGallery.scrollLeft;
+      }
+      draggedGallery = null;
+    }
+
+    document.addEventListener("pointerup", stopCaseDrag);
+    document.addEventListener("pointercancel", stopCaseDrag);
+
+    const wechatContact = document.getElementById("wechatContact");
+    const wechatButton = document.getElementById("wechatButton");
+
+    wechatButton.addEventListener("click", event => {
+      event.stopPropagation();
+      const isOpen = wechatContact.classList.toggle("open");
+      wechatButton.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    document.addEventListener("click", event => {
+      if (wechatContact.contains(event.target)) return;
+      wechatContact.classList.remove("open");
+      wechatButton.setAttribute("aria-expanded", "false");
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key !== "Escape") return;
+      wechatContact.classList.remove("open");
+      wechatButton.setAttribute("aria-expanded", "false");
+      wechatButton.focus();
+    });
+
+    const particleCanvas = document.getElementById("sloganParticles");
+    const particleContext = particleCanvas.getContext("2d");
+    const particlePointer = {
+      x: -9999,
+      y: -9999,
+      previousX: -9999,
+      previousY: -9999,
+      vx: 0,
+      vy: 0,
+      speed: 0,
+      active: false,
+      lastMove: 0
+    };
+    let sloganParticles = [];
+    let particleResizeTimer = 0;
+
+    function createSloganParticles() {
+      const width = particleCanvas.clientWidth;
+      const height = particleCanvas.clientHeight;
+      const ratio = Math.min(devicePixelRatio || 1, 2);
+      particleCanvas.width = Math.round(width * ratio);
+      particleCanvas.height = Math.round(height * ratio);
+      particleContext.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+      const buffer = document.createElement("canvas");
+      buffer.width = width;
+      buffer.height = height;
+      const bufferContext = buffer.getContext("2d", { willReadFrequently: true });
+      const fontSize = Math.min(width * (width < 700 ? .22 : .16), height * .25);
+      const lineGap = fontSize * .88;
+      bufferContext.textAlign = "center";
+      bufferContext.textBaseline = "middle";
+      bufferContext.font = `900 ${fontSize}px "Microsoft YaHei", "PingFang SC", sans-serif`;
+      bufferContext.fillStyle = "#fffdf7";
+      bufferContext.fillText("洞见细微", width / 2, height / 2 - lineGap / 2);
+      bufferContext.fillText("创意成真", width / 2, height / 2 + lineGap / 2);
+
+      const pixels = bufferContext.getImageData(0, 0, width, height).data;
+      const step = 3;
+      const nextParticles = [];
+      for (let y = 0; y < height; y += step) {
+        for (let x = 0; x < width; x += step) {
+          const offset = (y * width + x) * 4;
+          if (pixels[offset + 3] < 90) continue;
+          const previous = sloganParticles[nextParticles.length];
+          const jitter = step * .72;
+          nextParticles.push({
+            x: previous?.x ?? width / 2 + (Math.random() - .5) * width * .8,
+            y: previous?.y ?? height / 2 + (Math.random() - .5) * height * .7,
+            tx: x + (Math.random() - .5) * jitter,
+            ty: y + (Math.random() - .5) * jitter,
+            vx: previous?.vx ?? 0,
+            vy: previous?.vy ?? 0,
+            size: .65 + Math.random() * .85,
+            drift: Math.random() - .5,
+            recoverAt: 0
+          });
+        }
+      }
+      sloganParticles = nextParticles;
+      particleCanvas.dataset.particleCount = String(sloganParticles.length);
+    }
+
+    function positionParticlePointer(event, resetVelocity = false) {
+      const rect = particleCanvas.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      const isInside = x >= 0 && x <= rect.width && y >= 0 && y <= rect.height;
+      if (!isInside) {
+        particlePointer.active = false;
+        particleCanvas.dataset.interacting = "false";
+        return;
+      }
+      if (resetVelocity || particlePointer.previousX < -1000) {
+        particlePointer.previousX = x;
+        particlePointer.previousY = y;
+      }
+      const dx = x - particlePointer.previousX;
+      const dy = y - particlePointer.previousY;
+      particlePointer.vx += (dx - particlePointer.vx) * .72;
+      particlePointer.vy += (dy - particlePointer.vy) * .72;
+      particlePointer.speed += (Math.hypot(dx, dy) - particlePointer.speed) * .72;
+      particlePointer.x = x;
+      particlePointer.y = y;
+      particlePointer.previousX = x;
+      particlePointer.previousY = y;
+      particlePointer.active = true;
+      particlePointer.lastMove = performance.now();
+      particleCanvas.dataset.interacting = "true";
+    }
+
+    window.addEventListener("pointermove", event => positionParticlePointer(event), { passive: true });
+    window.addEventListener("pointerout", event => {
+      if (event.relatedTarget) return;
+      particlePointer.active = false;
+      particleCanvas.dataset.interacting = "false";
+    });
+
+    let sloganAnimating = true;
+
+    function animateSloganParticles() {
+      if (!sloganAnimating) {
+        requestAnimationFrame(animateSloganParticles);
+        return;
+      }
+      const width = particleCanvas.clientWidth;
+      const height = particleCanvas.clientHeight;
+      const now = performance.now();
+      const moving = particlePointer.active && particlePointer.speed > .18 && now - particlePointer.lastMove < 120;
+      particleContext.clearRect(0, 0, width, height);
+      const radius = Math.min(280, Math.max(130, width * .17) + particlePointer.speed * 2);
+
+      particleCanvas.dataset.motion = moving
+        ? "mixing"
+        : now - particlePointer.lastMove < 1700
+          ? "drifting"
+          : now - particlePointer.lastMove < 7000
+            ? "recovering"
+            : "resting";
+
+      sloganParticles.forEach(particle => {
+        if (moving) {
+          const dx = particle.x - particlePointer.x;
+          const dy = particle.y - particlePointer.y;
+          const distance = Math.hypot(dx, dy) || 1;
+          if (distance < radius) {
+            const influence = Math.pow(1 - distance / radius, 2);
+            const speed = Math.min(particlePointer.speed, 36);
+            const turn = particlePointer.vx * dy - particlePointer.vy * dx >= 0 ? 1 : -1;
+            const flowStrength = width < 700 ? .12 : .2;
+            const swirlStrength = width < 700 ? .05 : .075;
+            particle.vx += particlePointer.vx * flowStrength * influence;
+            particle.vy += particlePointer.vy * flowStrength * influence;
+            particle.vx += -dy / distance * speed * swirlStrength * influence * turn;
+            particle.vy += dx / distance * speed * swirlStrength * influence * turn;
+            particle.vx += dx / distance * speed * .025 * influence;
+            particle.vy += dy / distance * speed * .025 * influence;
+            particle.recoverAt = now + 650 + Math.random() * 1100;
+          }
+        }
+
+        if (now >= particle.recoverAt) {
+          const recoveryTime = Math.max(0, now - particle.recoverAt);
+          const spring = Math.min(.032, .0035 + recoveryTime * .000007);
+          const friction = recoveryTime < 2600 ? .945 : .89;
+          particle.vx += (particle.tx - particle.x) * spring;
+          particle.vy += (particle.ty - particle.y) * spring;
+          particle.vx *= friction;
+          particle.vy *= friction;
+        } else {
+          particle.vx *= .97;
+          particle.vy *= .97;
+        }
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+      });
+
+      particlePointer.vx *= .9;
+      particlePointer.vy *= .9;
+      particlePointer.speed *= .9;
+
+      particleContext.fillStyle = "#fffdf7";
+      particleContext.beginPath();
+      sloganParticles.forEach(particle => {
+        particleContext.moveTo(particle.x + particle.size, particle.y);
+        particleContext.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+      });
+      particleContext.fill();
+      requestAnimationFrame(animateSloganParticles);
+    }
+
+    window.addEventListener("resize", () => {
+      clearTimeout(particleResizeTimer);
+      particleResizeTimer = setTimeout(createSloganParticles, 160);
+    });
+
+    createSloganParticles();
+    requestAnimationFrame(animateSloganParticles);
+
+    const particleObserver = new IntersectionObserver(entries => {
+      sloganAnimating = entries[0].isIntersecting;
+    }, { threshold: 0 });
+    particleObserver.observe(particleCanvas);
+  </script>
+</body>
+</html>

@@ -1,0 +1,499 @@
+﻿[
+    {
+        "id":  1,
+        "original":  "confirm_019_green_party_scene_retouch_v2_left_panel_bright.png",
+        "file":  "assets/works-complete/work-001.jpg",
+        "width":  1672,
+        "height":  941
+    },
+    {
+        "id":  2,
+        "original":  "confirm_021_green_party_scene_retouch.png",
+        "file":  "assets/works-complete/work-002.jpg",
+        "width":  1672,
+        "height":  941
+    },
+    {
+        "id":  3,
+        "original":  "confirm_022_green_party_scene_retouch.png",
+        "file":  "assets/works-complete/work-003.jpg",
+        "width":  1672,
+        "height":  941
+    },
+    {
+        "id":  4,
+        "original":  "confirm_023_green_party_scene_retouch.png",
+        "file":  "assets/works-complete/work-004.jpg",
+        "width":  1672,
+        "height":  941
+    },
+    {
+        "id":  5,
+        "original":  "confirm_025_red_storefront_scene_retouch.png",
+        "file":  "assets/works-complete/work-005.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  6,
+        "original":  "confirm_026_red_v_display_scene_retouch.png",
+        "file":  "assets/works-complete/work-006.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  7,
+        "original":  "confirm_027_red_storefront_scene_retouch.png",
+        "file":  "assets/works-complete/work-007.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  8,
+        "original":  "confirm_028_restaurant_signage_scene_retouch.png",
+        "file":  "assets/works-complete/work-008.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  9,
+        "original":  "confirm_029_restaurant_counter_sign_scene_retouch.png",
+        "file":  "assets/works-complete/work-009.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  10,
+        "original":  "confirm_030_football_outdoor_scene_retouch.png",
+        "file":  "assets/works-complete/work-010.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  11,
+        "original":  "ChatGPT Image 2026年6月7日 14_54_16 (1).png",
+        "file":  "assets/works-complete/work-011.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  12,
+        "original":  "ChatGPT Image 2026年6月7日 14_54_17 (2).png",
+        "file":  "assets/works-complete/work-012.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  13,
+        "original":  "ChatGPT Image 2026年6月7日 14_54_18 (4).png",
+        "file":  "assets/works-complete/work-013.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  14,
+        "original":  "ChatGPT Image 2026年6月7日 14_54_19 (6).png",
+        "file":  "assets/works-complete/work-014.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  15,
+        "original":  "ChatGPT Image 2026年6月7日 14_57_50 (1).png",
+        "file":  "assets/works-complete/work-015.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  16,
+        "original":  "ChatGPT Image 2026年6月7日 14_57_50 (2).png",
+        "file":  "assets/works-complete/work-016.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  17,
+        "original":  "ChatGPT Image 2026年6月7日 14_57_51 (3).png",
+        "file":  "assets/works-complete/work-017.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  18,
+        "original":  "ChatGPT Image 2026年6月7日 14_57_51 (4).png",
+        "file":  "assets/works-complete/work-018.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  19,
+        "original":  "ChatGPT Image 2026年6月7日 14_57_52 (5).png",
+        "file":  "assets/works-complete/work-019.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  20,
+        "original":  "ChatGPT Image 2026年6月7日 14_57_52 (6).png",
+        "file":  "assets/works-complete/work-020.jpg",
+        "width":  1086,
+        "height":  1448
+    },
+    {
+        "id":  21,
+        "original":  "ChatGPT Image 2026年6月7日 14_57_52 (7).png",
+        "file":  "assets/works-complete/work-021.jpg",
+        "width":  1086,
+        "height":  1448
+    },
+    {
+        "id":  22,
+        "original":  "ChatGPT Image 2026年6月7日 15_01_24 (1).png",
+        "file":  "assets/works-complete/work-022.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  23,
+        "original":  "ChatGPT Image 2026年6月7日 15_01_25 (2).png",
+        "file":  "assets/works-complete/work-023.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  24,
+        "original":  "ChatGPT Image 2026年6月7日 15_01_25 (3).png",
+        "file":  "assets/works-complete/work-024.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  25,
+        "original":  "ChatGPT Image 2026年6月7日 15_01_26 (4).png",
+        "file":  "assets/works-complete/work-025.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  26,
+        "original":  "ChatGPT Image 2026年6月7日 15_01_26 (5).png",
+        "file":  "assets/works-complete/work-026.jpg",
+        "width":  1672,
+        "height":  941
+    },
+    {
+        "id":  27,
+        "original":  "ChatGPT Image 2026年6月7日 15_01_27 (6).png",
+        "file":  "assets/works-complete/work-027.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  28,
+        "original":  "ChatGPT Image 2026年6月7日 15_01_27 (7).png",
+        "file":  "assets/works-complete/work-028.jpg",
+        "width":  1672,
+        "height":  941
+    },
+    {
+        "id":  29,
+        "original":  "ChatGPT Image 2026年6月7日 15_01_28 (8).png",
+        "file":  "assets/works-complete/work-029.jpg",
+        "width":  1672,
+        "height":  941
+    },
+    {
+        "id":  30,
+        "original":  "ChatGPT Image 2026年6月7日 15_01_28 (9).png",
+        "file":  "assets/works-complete/work-030.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  31,
+        "original":  "ChatGPT Image 2026年6月7日 15_03_24 (1).png",
+        "file":  "assets/works-complete/work-031.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  32,
+        "original":  "ChatGPT Image 2026年6月7日 15_03_24 (2).png",
+        "file":  "assets/works-complete/work-032.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  33,
+        "original":  "ChatGPT Image 2026年6月7日 15_03_25 (3).png",
+        "file":  "assets/works-complete/work-033.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  34,
+        "original":  "ChatGPT Image 2026年6月7日 15_03_25 (4).png",
+        "file":  "assets/works-complete/work-034.jpg",
+        "width":  1254,
+        "height":  1254
+    },
+    {
+        "id":  35,
+        "original":  "ChatGPT Image 2026年6月7日 15_03_26 (5).png",
+        "file":  "assets/works-complete/work-035.jpg",
+        "width":  1254,
+        "height":  1254
+    },
+    {
+        "id":  36,
+        "original":  "ChatGPT Image 2026年6月7日 15_03_26 (6).png",
+        "file":  "assets/works-complete/work-036.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  37,
+        "original":  "ChatGPT Image 2026年6月7日 15_03_27 (7).png",
+        "file":  "assets/works-complete/work-037.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  38,
+        "original":  "ChatGPT Image 2026年6月7日 15_03_27 (8).png",
+        "file":  "assets/works-complete/work-038.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  39,
+        "original":  "ChatGPT Image 2026年6月7日 15_03_28 (9).png",
+        "file":  "assets/works-complete/work-039.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  40,
+        "original":  "ChatGPT Image 2026年6月7日 15_03_28 (10).png",
+        "file":  "assets/works-complete/work-040.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  41,
+        "original":  "ChatGPT Image 2026年6月7日 15_04_26 (1).png",
+        "file":  "assets/works-complete/work-041.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  42,
+        "original":  "ChatGPT Image 2026年6月7日 15_04_26 (2).png",
+        "file":  "assets/works-complete/work-042.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  43,
+        "original":  "ChatGPT Image 2026年6月7日 15_04_27 (3).png",
+        "file":  "assets/works-complete/work-043.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  44,
+        "original":  "ChatGPT Image 2026年6月7日 15_04_27 (4).png",
+        "file":  "assets/works-complete/work-044.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  45,
+        "original":  "ChatGPT Image 2026年6月7日 15_04_28 (5).png",
+        "file":  "assets/works-complete/work-045.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  46,
+        "original":  "ChatGPT Image 2026年6月7日 15_04_28 (6).png",
+        "file":  "assets/works-complete/work-046.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  47,
+        "original":  "ChatGPT Image 2026年6月7日 15_04_29 (7).png",
+        "file":  "assets/works-complete/work-047.jpg",
+        "width":  1086,
+        "height":  1448
+    },
+    {
+        "id":  48,
+        "original":  "ChatGPT Image 2026年6月7日 15_04_29 (8).png",
+        "file":  "assets/works-complete/work-048.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  49,
+        "original":  "ChatGPT Image 2026年6月7日 15_04_30 (9).png",
+        "file":  "assets/works-complete/work-049.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  50,
+        "original":  "ChatGPT Image 2026年6月7日 15_04_30 (10).png",
+        "file":  "assets/works-complete/work-050.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  51,
+        "original":  "ChatGPT Image 2026年6月7日 15_05_45 (1).png",
+        "file":  "assets/works-complete/work-051.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  52,
+        "original":  "ChatGPT Image 2026年6月7日 15_05_46 (2).png",
+        "file":  "assets/works-complete/work-052.jpg",
+        "width":  1254,
+        "height":  1254
+    },
+    {
+        "id":  53,
+        "original":  "ChatGPT Image 2026年6月7日 15_05_46 (3).png",
+        "file":  "assets/works-complete/work-053.jpg",
+        "width":  1254,
+        "height":  1254
+    },
+    {
+        "id":  54,
+        "original":  "ChatGPT Image 2026年6月7日 15_05_46 (4).png",
+        "file":  "assets/works-complete/work-054.jpg",
+        "width":  1254,
+        "height":  1254
+    },
+    {
+        "id":  55,
+        "original":  "ChatGPT Image 2026年6月7日 15_05_47 (5).png",
+        "file":  "assets/works-complete/work-055.jpg",
+        "width":  1254,
+        "height":  1254
+    },
+    {
+        "id":  56,
+        "original":  "ChatGPT Image 2026年6月7日 15_05_47 (6).png",
+        "file":  "assets/works-complete/work-056.jpg",
+        "width":  1254,
+        "height":  1254
+    },
+    {
+        "id":  57,
+        "original":  "ChatGPT Image 2026年6月7日 15_05_48 (7).png",
+        "file":  "assets/works-complete/work-057.jpg",
+        "width":  1254,
+        "height":  1254
+    },
+    {
+        "id":  58,
+        "original":  "ChatGPT Image 2026年6月7日 15_05_49 (8).png",
+        "file":  "assets/works-complete/work-058.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  59,
+        "original":  "ChatGPT Image 2026年6月7日 15_05_49 (9).png",
+        "file":  "assets/works-complete/work-059.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  60,
+        "original":  "ChatGPT Image 2026年6月7日 15_05_49 (10).png",
+        "file":  "assets/works-complete/work-060.jpg",
+        "width":  941,
+        "height":  1672
+    },
+    {
+        "id":  61,
+        "original":  "ChatGPT Image 2026年6月7日 15_09_01 (1).png",
+        "file":  "assets/works-complete/work-061.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  62,
+        "original":  "ChatGPT Image 2026年6月7日 15_09_02 (2).png",
+        "file":  "assets/works-complete/work-062.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  63,
+        "original":  "ChatGPT Image 2026年6月7日 15_09_02 (3).png",
+        "file":  "assets/works-complete/work-063.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  64,
+        "original":  "ChatGPT Image 2026年6月7日 15_09_21 (1).png",
+        "file":  "assets/works-complete/work-064.jpg",
+        "width":  941,
+        "height":  1672
+    },
+    {
+        "id":  65,
+        "original":  "ChatGPT Image 2026年6月7日 15_09_22 (2).png",
+        "file":  "assets/works-complete/work-065.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  66,
+        "original":  "ChatGPT Image 2026年6月7日 15_14_13 (1).png",
+        "file":  "assets/works-complete/work-066.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  67,
+        "original":  "ChatGPT Image 2026年6月7日 15_14_14 (2).png",
+        "file":  "assets/works-complete/work-067.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  68,
+        "original":  "ChatGPT Image 2026年6月7日 15_14_14 (3).png",
+        "file":  "assets/works-complete/work-068.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  69,
+        "original":  "ChatGPT Image 2026年6月7日 15_14_14 (4).png",
+        "file":  "assets/works-complete/work-069.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  70,
+        "original":  "ChatGPT Image 2026年6月7日 15_14_15 (5).png",
+        "file":  "assets/works-complete/work-070.jpg",
+        "width":  1448,
+        "height":  1086
+    },
+    {
+        "id":  71,
+        "original":  "ChatGPT Image 2026年6月7日 15_14_15 (6).png",
+        "file":  "assets/works-complete/work-071.jpg",
+        "width":  1448,
+        "height":  1086
+    }
+]
