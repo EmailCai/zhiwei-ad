@@ -21,6 +21,7 @@
       margin: 0;
       min-width: 320px;
       background: var(--blue);
+      overflow-x: clip;
     }
 
     body {
@@ -67,6 +68,7 @@
 
     .about-heading,
     .about-copy,
+    .about-mobile-copy,
     .services-heading,
     .services-content,
     .cases-heading,
@@ -261,6 +263,8 @@
       margin: 0 auto;
       white-space: nowrap;
     }
+
+    .about-mobile-copy { display: none; }
 
     .services {
       position: relative;
@@ -705,20 +709,22 @@
     }
 
     @media (max-width: 700px) {
+      html { scroll-padding-top: 72px; }
+
       .hero-header {
         height: 76px;
-        padding: 0 20px;
+        padding: 0 max(16px, env(safe-area-inset-left)) 0 max(16px, env(safe-area-inset-right));
       }
 
       .hero-header.is-fixed { height: 68px; }
 
       .logo {
-        width: 138px;
+        width: clamp(116px, 34vw, 138px);
       }
 
       .menu-button {
-        width: 44px;
-        height: 44px;
+        width: 42px;
+        height: 42px;
         font-size: 26px;
       }
 
@@ -761,7 +767,7 @@
 
       .about {
         min-height: 100svh;
-        padding: 28px 20px 42px;
+        padding: 26px 18px 38px;
         overflow: visible;
       }
 
@@ -773,25 +779,32 @@
       .about-heading::before { width: 11px; }
 
       .about-copy {
-        position: relative;
-        left: auto;
-        right: auto;
-        top: auto;
-        transform: none;
-        margin-top: clamp(96px, 14vh, 120px);
-        font-size: clamp(20px, 5.4vw, 23px);
-        line-height: 1.25;
-        letter-spacing: -0.055em;
+        display: none;
       }
 
-      .about-line {
-        width: auto;
-        white-space: normal;
+      .about-mobile-copy {
+        display: block;
+        margin: clamp(68px, 10vh, 92px) 0 0;
+        color: #fff;
+        font-size: clamp(16px, 4.45vw, 18px);
+        font-weight: 500;
+        line-height: 1.85;
+        letter-spacing: -.025em;
+        text-align: justify;
+        text-justify: inter-ideograph;
+      }
+
+      .about-mobile-copy p {
+        margin: 0;
+      }
+
+      .about-mobile-copy p + p {
+        margin-top: 18px;
       }
 
       .services {
         min-height: 100svh;
-        padding: 28px 20px 42px;
+        padding: 26px 18px 38px;
         overflow: visible;
       }
 
@@ -810,14 +823,14 @@
         transform: none;
         display: flex;
         flex-direction: column;
-        gap: 42px;
-        margin-top: clamp(100px, 15vh, 130px);
+        gap: 28px;
+        margin-top: clamp(70px, 10vh, 92px);
       }
 
       .services-title {
-        margin-bottom: 30px;
-        font-size: clamp(44px, 12.2vw, 58px);
-        line-height: .98;
+        margin-bottom: 22px;
+        font-size: clamp(38px, 10.8vw, 48px);
+        line-height: 1;
       }
 
       .services-title span:nth-child(2) { margin-left: .58em; }
@@ -825,12 +838,12 @@
 
       .services-description {
         margin-bottom: 22px;
-        font-size: 12px;
-        line-height: 1.6;
+        font-size: 13px;
+        line-height: 1.65;
       }
 
       .service-list {
-        width: 92%;
+        width: 100%;
         gap: 9px 10px;
       }
 
@@ -845,13 +858,13 @@
       .service-item:last-child { width: 100%; }
 
       .service-graphic {
-        width: min(62vw, 240px);
+        width: min(54vw, 210px);
         align-self: flex-end;
       }
 
       .cases {
         min-height: 100svh;
-        padding: 28px 20px 42px;
+        padding: 26px 18px 38px;
       }
 
       .cases-heading {
@@ -862,17 +875,17 @@
       .cases-heading::before { width: 11px; }
 
       .case-menu {
-        margin-top: clamp(72px, 11vh, 100px);
+        margin-top: clamp(54px, 8vh, 72px);
       }
 
       .case-link {
         grid-template-columns: 24px minmax(0, 1fr) 24px;
-        padding: 8px 0;
-        font-size: clamp(42px, 12.5vw, 56px);
-        line-height: .9;
+        padding: 10px 0;
+        font-size: clamp(38px, 11vw, 48px);
+        line-height: .94;
       }
 
-      .case-item:nth-child(5) .case-link { font-size: 36px; }
+      .case-item:nth-child(5) .case-link { font-size: clamp(29px, 8.3vw, 34px); }
 
       .case-gallery {
         height: clamp(230px, 68vw, 340px);
@@ -886,13 +899,13 @@
         padding: 0;
       }
 
-      .case-card img { max-width: min(76vw, 300px); }
+      .case-card img { max-width: min(82vw, 320px); }
 
       .case-empty { font-size: 44px; }
 
       .contact {
         min-height: 25svh;
-        padding: 24px 20px 28px;
+        padding: 22px 18px 24px;
       }
 
       .contact-heading {
@@ -930,11 +943,19 @@
       .wechat-button svg { width: 42px; }
 
       .wechat-qr {
-        right: auto;
-        left: 0;
-        width: min(280px, calc(100vw - 40px));
-        transform-origin: left bottom;
+        right: 0;
+        left: auto;
+        width: min(260px, calc(100vw - 36px));
+        transform-origin: right bottom;
       }
+    }
+
+    @media (max-width: 370px) {
+      .about-mobile-copy { font-size: 15.5px; }
+      .services-title { font-size: 37px; }
+      .service-item { font-size: 12px; }
+      .case-link { font-size: 37px; }
+      .contact-value { font-size: 13px; }
     }
   </style>
 </head>
@@ -971,6 +992,10 @@
       <span class="about-line">以更灵活的协作方式，认真对待每一个细节</span>
       <span class="about-line">让好的想法最终成为看得见的成果</span>
     </div>
+    <div class="about-mobile-copy">
+      <p>知微广告是一家以新技术驱动的独立广告创意工作室，专注于品牌视觉、商业广告设计及制作落地。我们从品牌与经营需求出发，将前沿创作方式融入设计过程，让创意表达更准确，方案推进更高效。</p>
+      <p>采用线上协作与主理人全程负责的服务模式，并联合长期合作的设计、制作与安装供应伙伴，为客户提供从创意构思、视觉设计到成品交付的一体化服务。以更灵活的协作方式认真对待每一个细节，让好的想法最终成为看得见的成果。</p>
+    </div>
   </section>
   <section class="services" id="services" aria-labelledby="services-heading">
     <h2 class="services-heading" id="services-heading">服务内容</h2>
@@ -983,7 +1008,6 @@
           <span class="service-item">企业文化建设</span>
           <span class="service-item">展览展示</span>
           <span class="service-item">广告物料制作</span>
-          <span class="service-item">品牌物料设计及制作</span>
         </div>
       </div>
       <div class="service-graphic" aria-hidden="true">
@@ -1018,10 +1042,6 @@
         <button class="case-link" type="button" data-case-category="广告物料制作" aria-expanded="false" onclick="selectCaseCategory(this)"><span>广告物料制作</span></button>
         <div class="case-panel"><div class="case-panel-inner"><div class="case-gallery" tabindex="0" aria-live="polite"></div></div></div>
       </div>
-      <div class="case-item">
-        <button class="case-link" type="button" data-case-category="品牌物料设计及制作" aria-expanded="false" onclick="selectCaseCategory(this)"><span>品牌物料设计及制作</span></button>
-        <div class="case-panel"><div class="case-panel-inner"><div class="case-gallery" tabindex="0" aria-live="polite"></div></div></div>
-      </div>
     </nav>
   </section>
   <section class="contact" id="contact" aria-labelledby="contact-heading">
@@ -1038,7 +1058,7 @@
         </a>
       </div>
       <div class="wechat-contact" id="wechatContact">
-        <button class="wechat-button" id="wechatButton" type="button" aria-expanded="false" aria-controls="wechatQr">
+        <button class="wechat-button" id="wechatButton" type="button" aria-label="微信咨询" aria-expanded="false" aria-controls="wechatQr">
           <svg viewBox="0 0 64 54" aria-hidden="true">
             <path fill="currentColor" d="M25.5 4C11.4 4 0 13.2 0 24.5c0 6.5 3.8 12.3 9.8 16.1L7.4 49l9.2-4.8c2.8.7 5.8 1.1 8.9 1.1 1.2 0 2.4-.1 3.6-.2a18 18 0 0 1-2.6-9.3c0-11 9.7-20 22-20.5C44.7 8.6 35.8 4 25.5 4Zm-8.3 14.3a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm17 0a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/>
             <path fill="currentColor" d="M64 35.8c0-9.2-8.3-16.7-18.5-16.7S27 26.6 27 35.8s8.3 16.7 18.5 16.7c2.5 0 4.9-.4 7.1-1.2l7.2 3.7-1.9-6.5C61.7 45.4 64 40.8 64 35.8ZM39.4 30a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Zm12.3 0a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"/>
@@ -1051,9 +1071,9 @@
       </div>
     </div>
   </section>
-  <script src="assets/cases-data.js"></script>
-  <script src="assets/dot-field.js"></script>
-  <script src="assets/reveal.js"></script>
+  <script src="assets/cases-data.js?v=20260614-ad-material"></script>
+  <script src="assets/dot-field.js?v=mobile-20260614"></script>
+  <script src="assets/reveal.js?v=mobile-20260614-2"></script>
   <script>
     const caseData = window.ZHIWEI_CASES || {};
     const headerActions = document.getElementById("headerActions");
@@ -1076,6 +1096,15 @@
     }, { passive: true });
 
     window.addEventListener("resize", updateFixedHeader);
+
+    function syncFixedHeaderAfterNavigation() {
+      requestAnimationFrame(updateFixedHeader);
+      setTimeout(updateFixedHeader, 350);
+      setTimeout(updateFixedHeader, 900);
+    }
+
+    window.addEventListener("load", syncFixedHeaderAfterNavigation);
+    window.addEventListener("hashchange", syncFixedHeaderAfterNavigation);
 
     function closeHeaderMenu() {
       headerNav.classList.remove("open");
@@ -1245,11 +1274,14 @@
     };
     let sloganParticles = [];
     let particleResizeTimer = 0;
+    let sloganParticleFrameTime = 0;
 
     function createSloganParticles() {
       const width = particleCanvas.clientWidth;
       const height = particleCanvas.clientHeight;
-      const ratio = Math.min(devicePixelRatio || 1, 2);
+      const ratio = width < 700
+        ? Math.min(devicePixelRatio || 1, 1.5)
+        : Math.min(devicePixelRatio || 1, 2);
       particleCanvas.width = Math.round(width * ratio);
       particleCanvas.height = Math.round(height * ratio);
       particleContext.setTransform(ratio, 0, 0, ratio, 0, 0);
@@ -1268,7 +1300,8 @@
       bufferContext.fillText("创意成真", width / 2, height / 2 + lineGap / 2);
 
       const pixels = bufferContext.getImageData(0, 0, width, height).data;
-      const step = 3;
+      const isMobile = width < 700;
+      const step = isMobile ? 4 : 3;
       const nextParticles = [];
       for (let y = 0; y < height; y += step) {
         for (let x = 0; x < width; x += step) {
@@ -1283,7 +1316,7 @@
             ty: y + (Math.random() - .5) * jitter,
             vx: previous?.vx ?? 0,
             vy: previous?.vy ?? 0,
-            size: .65 + Math.random() * .85,
+            size: isMobile ? .8 + Math.random() * .8 : .65 + Math.random() * .85,
             drift: Math.random() - .5,
             recoverAt: 0
           });
@@ -1330,13 +1363,18 @@
 
     let sloganAnimating = true;
 
-    function animateSloganParticles() {
+    function animateSloganParticles(time = 0) {
       if (!sloganAnimating) {
         requestAnimationFrame(animateSloganParticles);
         return;
       }
       const width = particleCanvas.clientWidth;
       const height = particleCanvas.clientHeight;
+      if (width < 700 && time - sloganParticleFrameTime < 30) {
+        requestAnimationFrame(animateSloganParticles);
+        return;
+      }
+      sloganParticleFrameTime = time;
       const now = performance.now();
       const moving = particlePointer.active && particlePointer.speed > .18 && now - particlePointer.lastMove < 120;
       particleContext.clearRect(0, 0, width, height);

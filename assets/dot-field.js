@@ -28,7 +28,9 @@
 
     resize() {
       const rect = this.section.getBoundingClientRect();
-      const dpr = Math.min(devicePixelRatio || 1, 2);
+      const dpr = innerWidth < 700
+        ? Math.min(devicePixelRatio || 1, 1.35)
+        : Math.min(devicePixelRatio || 1, 2);
       this.width = rect.width;
       this.height = rect.height;
       this.canvas.width = Math.round(this.width * dpr);
@@ -38,7 +40,7 @@
     }
 
     buildDots() {
-      const step = innerWidth < 700 ? 22 : 24;
+      const step = innerWidth < 700 ? 28 : 24;
       const padX = (this.width % step) / 2 + step / 2;
       const padY = (this.height % step) / 2 + step / 2;
       const dots = [];
